@@ -6,6 +6,9 @@ import { CreateUserDto } from 'src/auth/dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
+  findByEmail(email: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -21,7 +24,7 @@ export class UsersService {
   }
 
   // Example method to find Email
-  async findUserByEmail(email: string): Promise<any> {
-    // Logic to find a user by email in the database
+  async findUserByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email } });
   }
 }
